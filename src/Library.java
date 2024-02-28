@@ -26,13 +26,12 @@ public class Library {
 		// Creating object of book class
 		BookOperations ob = new BookOperations();
 		// Creating object of students class
-		User obUser = new User();
-		// Creating object of students class
 		StudentOperation obStudent = new StudentOperation();
         // Creating object of Libraryoperation class
         LibrarianOperation obLibrary = new LibrarianOperation();
 
 		int choice;
+		int choice0;
 		int choice1;
 		int searchChoice;
 		
@@ -40,111 +39,177 @@ public class Library {
 			ob.dispMenu1();
 			choice1 = input.nextInt();
 
-			// Switch case
+			// Switch case for registration or login
 			switch (choice1) {
 
 				// Case
 			case 1:
-			// if(obStudent.isStudent()>0)
-			int studentIndex = obStudent.isStudent();
-
-if (studentIndex > -1)
-			do {
-				ob.dispMenu();
-				choice = input.nextInt();
-	
-				// Switch case
-				switch (choice) {
-	
-					// Case
-				case 1:
-					Book b = new Book();
-					ob.addBook(b);
-					break;
-	
-					// Case
-				case 2:
-					ob.upgradeBookQty();
-					break;
-	
-				// Case
-				case 3:
-	
-					System.out.println(
-						" press 1 to Search with Book Serial No.");
-					System.out.println(
-						" Press 2 to Search with Book's Author Name.");
-					searchChoice = input.nextInt();
-	
-					// Nested switch
-					switch (searchChoice) {
-	
-						// Case
+			//login options
+			do{
+				ob.dispMenu2();
+				choice1 = input.nextInt();
+				switch (choice1) {
+					//login as student
 					case 1:
-						ob.searchBySno();
-						break;
-	
-						// Case
-					case 2:
-						ob.searchByAuthorName();
+					int studentIndex = obStudent.isStudent();
+					if (studentIndex > -1)
+					do{
+						ob.dispMenuStudent();
+						choice = input.nextInt();
+						switch (choice) {
+							
+							case 1:
+				
+								System.out.println(
+									" press 1 to Search with Book Serial No.");
+								System.out.println(
+									" Press 2 to Search with Book's Author Name.");
+								searchChoice = input.nextInt();
+				
+								// Nested switch
+								switch (searchChoice) {
+				
+									// Case
+								case 1:
+									ob.searchBySno();
+									break;
+				
+									// Case
+								case 2:
+									ob.searchByAuthorName();
+								}
+								break;
+				
+								// Case
+							case 2:
+								ob.showAllBooks();
+								break;
+				
+								// Case
+							
+							case 3:
+								ob.checkOutBook();
+								break;
+				
+								// Case
+							case 4:
+								obStudent.checkInBook(ob);
+								break;
+				
+								// Default case that will execute for sure
+								// if above cases does not match
+							default:
+				
+								// Print statement
+								System.out.println("ENTER BETWEEN 0 TO 4.");
+							}
+							
 					}
+					// Checking condition at last where we are
+					// checking case entered value is not zero
+					while (choice != 0);	
 					break;
-	
-					// Case
-				case 4:
-					ob.showAllBooks();
+					//login as Librarian
+					case 2:
+					int LibrarianIndex = obLibrary.isLibrarian();
+					if (LibrarianIndex > -1)
+					do{
+						ob.dispMenuLibratian();
+						choice0 = input.nextInt();
+						switch (choice0) {
+							case 1:
+		
+							Book b = new Book();
+							ob.addBook(b);
+							break;
+			
+							// Case
+							case 2:
+							ob.upgradeBookQty();
+							break;
+			
+							// Case search book
+							case 3:
+				
+								System.out.println(
+									" press 1 to Search with Book Serial No.");
+								System.out.println(
+									" Press 2 to Search with Book's Author Name.");
+								searchChoice = input.nextInt();
+				
+								// Nested switch
+								switch (searchChoice) {
+				
+									// Case
+								case 1:
+									ob.searchBySno();
+									break;
+				
+									// Case
+								case 2:
+									ob.searchByAuthorName();
+								}
+								break;
+				
+								// Case
+							case 4:
+								ob.showAllBooks();
+								break;
+				
+								// Case
+							case 5:
+								User s = new User();
+								obStudent.addStudent(s);
+								break;
+				
+								// Case
+							// case 6:
+							// 	obStudent.showAllStudents();
+							// 	break;
+				
+								// Case for book borrowing
+							case 7:
+								ob.checkOutBook();
+								break;
+				
+								// Case for book return
+							case 8:
+								obStudent.checkInBook(ob);
+								break;
+				
+								// Default case that will execute for sure
+								// if above cases does not match
+							default:
+				
+								// Print statement
+								System.out.println("ENTER BETWEEN 0 TO 8.");
+							}
+							
+					}
+					// Checking condition at last where we are
+					// checking case entered value is not zero
+					while (choice0 != 0);	
 					break;
-	
-					// Case
-				case 5:
-					StudentInfo s = new StudentInfo();
-					obStudent.addStudent(s);
-					break;
-	
-					// Case
-				// case 6:
-				// 	obStudent.showAllStudents();
-				// 	break;
-	
-					// Case
-				case 7:
-					obStudent.checkOutBook(ob);
-					break;
-	
-					// Case
-				case 8:
-					obStudent.checkInBook(ob);
-					break;
-	
-					// Default case that will execute for sure
-					// if above cases does not match
-				default:
-	
-					// Print statement
-					System.out.println("ENTER BETWEEN 0 TO 8.");
+					}
+				
 				}
-	
-			}
-	
-			// Checking condition at last where we are
-			// checking case entered value is not zero
-			while (choice != 0);
-
-				break;
-
-				// Case
+				while (choice1 != 0);
+								
 			case 2:
 				// obUser.User1();
 				// obStudent.addStudent();
 				
-				StudentInfo s = new StudentInfo();
+				User s = new User();
 				obStudent.addStudent(s);
 				break;
-
-				default:
+			case 3:
+				// register as librarian;
+				User l = new User();
+				obLibrary.addLibrarian(l);
+			default:
 
 				// Print statement
-				System.out.println("ENTER 1 or 2.");
+			System.out.println("ENTER 1,2 or 3.");
 				
 }
 }
@@ -152,5 +217,4 @@ while (choice1 != 0);
 		
 		// Creating menu
 		// using do-while loop
-}
-}
+}}

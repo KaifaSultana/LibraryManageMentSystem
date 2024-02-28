@@ -8,34 +8,32 @@
 import java.util.Scanner;
 
 // Class
-public class LibrarianOperation {
+public class LibrarianOperation extends StudentOperation{
 
 	// Creating objects of Scanner and students class
 	Scanner input = new Scanner(System.in);
-	StudentInfo theStudents[] = new StudentInfo[50];
+	User theLibrarian[] = new User[50];
 
 	public static int count = 0;
 
 	// Method 1
-	// To add books
-	public void addStudent(StudentInfo s)
+	// To add Librarian
+	public void addLibrarian(User s)
 	{
 		for (int i = 0; i < count; i++) {
 
-			if (s.studentName.equalsIgnoreCase(
-					theStudents[i].studentName)) {
+			if (s.Name.equalsIgnoreCase(
+					theLibrarian[i].Name)) {
 
 				// Print statement
 				System.out.println(
-					"Student " + s.studentName
-					+ " is Already Registered.");
+					"Librarian is Already Registered.");
 
 				return;
 			}
 		}
-
 		if (count <= 50) {
-			theStudents[count] = s;
+			theLibrarian[count] = s;
 			count++;
 		}
 	}
@@ -49,7 +47,7 @@ public class LibrarianOperation {
 		System.out.println("Student Name\t\tReg Number");
 		for (int i = 0; i < count; i++) {
 
-			System.out.println(theStudents[i].studentName
+			System.out.println(theStudents[i].Name
 							+ "\t\t"
 							+ theStudents[i].emailId
                             + "\t\t"
@@ -59,104 +57,27 @@ public class LibrarianOperation {
 
 	// Method 3
 	// To check the Student
-	public int isStudent()
+	public int isLibrarian()
 	{
 		// Display message only
-		System.out.println("Enter Student Name:");
+		System.out.println("Enter Librarian Name:");
 
-		String studentName = input.nextLine();
+		String Name = input.nextLine();
 
 		for (int i = 0; i < count; i++) {
 
-			if (theStudents[i].studentName.equalsIgnoreCase(
-					studentName)) {
+			if (theLibrarian[i].Name.equalsIgnoreCase(Name)) {
 				return i;
 			}
 		}
 
 		// Print statements
-		System.out.println("Student is not Registered.");
+		System.out.println("Librarian is not Registered.");
 		System.out.println("Get Registered First.");
 
 		return -1;
 	}
 
-	// Method 4
-	// To remove the book
-	public void checkOutBook(BookOperations book)
-	{
-		int studentIndex = this.isStudent();
 
-		if (studentIndex != -1) {
-			System.out.println("checking out");
-
-			book.showAllBooks();
-			Book b = book.checkOutBook();
-
-			System.out.println("checking out");
-			if (b != null) {
-
-				if (theStudents[studentIndex].booksCount
-					<= 3) {
-
-					System.out.println("adding book");
-					theStudents[studentIndex].borrowedBooks
-						[theStudents[studentIndex]
-							.booksCount]
-						= b;
-					theStudents[studentIndex].booksCount++;
-
-					return;
-				}
-				else {
-
-					System.out.println(
-						"Student Can not Borrow more than 3 Books.");
-					return;
-				}
-			}
-			System.out.println("Book is not Available.");
-		}
-	}
-
-	// Method 5
-	// To add the book
-	public void checkInBook(BookOperations book)
-	{
-		int studentIndex = this.isStudent();
-		if (studentIndex != -1) {
-
-			// Printing credentials corresponding to student
-			System.out.println(
-				"S.No\t\t\tBook Name\t\t\tAuthor Name");
-
-                StudentInfo s = theStudents[studentIndex];
-
-			for (int i = 0; i < s.booksCount; i++) {
-
-				System.out.println(
-					s.borrowedBooks[i].sNo + "\t\t\t"
-					+ s.borrowedBooks[i].bookName + "\t\t\t"
-					+ s.borrowedBooks[i].authorName);
-			}
-
-			// Display message only
-			System.out.println(
-				"Enter Serial Number of Book to be Checked In:");
-
-			int sNo = input.nextInt();
-
-			for (int i = 0; i < s.booksCount; i++) {
-				if (sNo == s.borrowedBooks[i].sNo) {
-					book.checkInBook(s.borrowedBooks[i]);
-					s.borrowedBooks[i] = null;
-
-					return;
-				}
-			}
-
-			System.out.println("Book of Serial No " + sNo
-							+ "not Found");
-		}
-	}
 }
+

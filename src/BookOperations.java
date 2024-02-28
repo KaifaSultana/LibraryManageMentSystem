@@ -6,7 +6,7 @@
 // Importing required classes
 import java.util.Scanner;
 
-// CLass
+// CLass 
 public class  BookOperations{
 
 	// Class data members
@@ -17,41 +17,41 @@ public class  BookOperations{
 
 	// Method 1
 	// To compare books
-	public int compareBookObjects(Book b1, Book b2)
-	{
+	// public int compareBookObjects(Book b1, Book b2)
+	// {
 
-		// If book name matches
-		if (b1.bookName.equalsIgnoreCase(b2.bookName)) {
+	// 	// If book name matches
+	// 	if (b1.bookName.equalsIgnoreCase(b2.bookName)) {
 
-			// Printing book exists
-			System.out.println(
-				"Book of this Name Already Exists.");
-			return 0;
-		}
+	// 		// Printing book exists
+	// 		System.out.println(
+	// 			"Book of this Name Already Exists.");
+	// 		return 0;
+	// 	}
 
-		// if book serial matches
-		if (b1.sNo == b2.sNo) {
+	// 	// if book serial matches
+	// 	if (b1.sNo == b2.sNo) {
 
-			// Print book exists
-			System.out.println(
-				"Book of this Serial No Already Exists.");
+	// 		// Print book exists
+	// 		System.out.println(
+	// 			"Book of this Serial No Already Exists.");
 
-			return 0;
-		}
-		return 1;
-	}
+	// 		return 0;
+	// 	}
+	// 	return 1;
+	// }
 
 	// Method 2
 	// To add book
 	public void addBook(Book b)
 	{
 
-		for (int i = 0; i < count; i++) {
+		// for (int i = 0; i < count; i++) {
 
-			if (this.compareBookObjects(b, this.theBooks[i])
-				== 0)
-				return;
-		}
+		// 	if (this.compareBookObjects(b, this.theBooks[i])
+		// 		== 0)
+		// 		return;
+		// }
 
 		if (count < 50) {
 
@@ -192,12 +192,37 @@ public class  BookOperations{
 	// To create menu
 	public void dispMenu1(){
 		System.out.println("Press 1 to login");
-		System.out.println("Press 2 for New User");
+		System.out.println("Press 2 for Register as Student");
+		System.out.println("Press 3 for Register as Librarian");
 	}
-	public void dispMenu()
+	public void dispMenu2(){
+		System.out.println("Press 1 to login as Student");
+		System.out.println("Press 2 for login as Librarian ");
+	}
+	public void dispMenuStudent()
 	{
 
-		// Displaying menu
+		// Displaying menu for student
+		System.out.println(
+			"----------------------------------------------------------------------------------------------------------");
+		// System.out.println("Press 1 to Add new Book.");
+		System.out.println("Press 0 to Exit Application.");
+		// System.out.println(
+		// 	"Press 2 to Upgrade Quantity of a Book.");
+		System.out.println("Press 1 to Search a Book.");
+		System.out.println("Press 2 to Show All Books.");
+		// System.out.println("Press 5 to Register Student.");
+		// System.out.println(
+		// 	"Press 6 to Show All Registered Students.");
+		System.out.println("Press 3 to Check Out Book. ");
+		System.out.println("Press 4 to Check In Book");
+		System.out.println(
+			"-------------------------------------------------------------------------------------------------------");
+	}
+	public void dispMenuLibratian()
+	{
+
+		// Displaying menu for Librarian 
 		System.out.println(
 			"----------------------------------------------------------------------------------------------------------");
 		System.out.println("Press 1 to Add new Book.");
@@ -207,8 +232,8 @@ public class  BookOperations{
 		System.out.println("Press 3 to Search a Book.");
 		System.out.println("Press 4 to Show All Books.");
 		System.out.println("Press 5 to Register Student.");
-		// System.out.println(
-		// 	"Press 6 to Show All Registered Students.");
+		System.out.println(
+			"Press 6 to Show All Registered Students.");
 		System.out.println("Press 7 to Check Out Book. ");
 		System.out.println("Press 8 to Check In Book");
 		System.out.println(
@@ -239,10 +264,10 @@ public class  BookOperations{
 	}
 
 	// Method 9
-	// To remove the book from the library
+	// To borrow the book from the library
 	public Book checkOutBook()
 	{
-
+		showAllBooks();
 		System.out.println(
 			"Enter Serial No of Book to be Checked Out.");
 		int sNo = input.nextInt();
@@ -253,6 +278,7 @@ public class  BookOperations{
 			theBooks[bookIndex].bookQtyCopy--;
 			return theBooks[bookIndex];
 		}
+		System.out.println("Book is given to you");
 		return null;
 	}
 
@@ -266,5 +292,6 @@ public class  BookOperations{
 				return;
 			}
 		}
-	}
+	}	
+	
 }

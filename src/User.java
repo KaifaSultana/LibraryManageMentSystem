@@ -23,10 +23,10 @@ public class User {
 	Scanner input = new Scanner(System.in);
 
 	// Constructor
-	public void User1()
+	public User()
 	{
 		// Print statement
-		System.out.println("Enter Student Name:");
+		System.out.println("Enter Name:");
 
 		// This keywords refers to current instance
 		this.Name = input.nextLine();
